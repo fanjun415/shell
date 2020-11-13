@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  myexport:
+    image: prom/node-exporter:latest
+    ports:
+     - 9100:9100
+    restart: always
+    labels:
+      service: myexport
+    logging:
+      options:
+        labels: "service"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+networks:
+  default:
+    external:
+      name: fanjun
